@@ -21,7 +21,7 @@ public class PatientController {
     }
 
     @GetMapping
-    public List<Patient> showAll(){
+    public List<Patient> showAllPatients(){
         return this.patientRepository.findAll();
     }
 
@@ -44,8 +44,5 @@ public class PatientController {
     public Optional<Patient> searchById(@PathVariable int id){
         return this.patientRepository.findById(id);
     }
-
-
-
 
 }
