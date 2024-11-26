@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/mentors")
@@ -28,5 +29,25 @@ public class MentorController {
         Mentor savedMentor = mentorRepository.save(mentor);
         return new ResponseEntity<>(savedMentor, HttpStatus.CREATED);
 
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Mentor> getMentorById(@PathVariable int id ){
+        Optional<Mentor> optionalMentor = mentorRepository.findById(id);
+
+        if (optionalMentor.isPresent()) {
+            return new ResponseEntity<>(optionalMentor.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Mentor> getMentorByName(@PathVariable String name ){
+        Optional<Mentor> optionalMentor = mentorRepository.findByName(name);
+
+        if (optionalMentor.isPresent()) {
+            return new ResponseEntity<>(optionalMentor.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
