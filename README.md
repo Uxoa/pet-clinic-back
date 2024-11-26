@@ -1,4 +1,4 @@
-##Clinica Veterinaria##
+Clinica Veterinaria
 
 - crear tutor
 - crear paciente
