@@ -18,8 +18,8 @@ public class Mentor {
     @Column(name="phone")
     private int phone;
 
-    /*@OneToMany(mappedBy = "mentor", cascade = CascadeType.ALL)
-    private List<Patient> patients;*/
+    @OneToMany(mappedBy = "mentor", cascade = CascadeType.ALL)
+    private List<Patient> patients;
 
     public Mentor(int id, String name, String surname, int phone) {
         this.id = id;
@@ -32,9 +32,7 @@ public class Mentor {
         return surname;
     }
 
-    /*public List<Patient> getPatients() {
-        return patients;
-    }*/
+
 
     public int getId() {
         return id;
