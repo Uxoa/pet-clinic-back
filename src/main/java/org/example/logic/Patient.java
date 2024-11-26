@@ -16,15 +16,15 @@ public class Patient {
     @Column(name="race")
     private String race;
     @Column(name="age")
-    private byte age;
+    private int age;
 
-    public Patient(int id, String name, String species, String race, byte age) {
-        this.id = id;
+    public Patient(String name, String species, String race, int age) {
         this.name = name;
         this.species = species;
         this.race = race;
         this.age = age;
     }
+
 
     public int getId() {
         return id;
@@ -42,7 +42,7 @@ public class Patient {
         return race;
     }
 
-    public byte getAge() {
+    public int getAge() {
         return age;
     }
 
@@ -52,6 +52,4 @@ public class Patient {
 
     public Patient() {
     }
-
-
 }

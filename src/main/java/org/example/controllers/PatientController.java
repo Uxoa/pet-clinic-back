@@ -1,9 +1,7 @@
 package org.example.controllers;
 
-import jakarta.persistence.Entity;
 import org.example.logic.Patient;
 import org.example.logic.PatientRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ public class PatientController {
 
     @GetMapping
     public List<Patient> showAllPatients(){
-        return this.patientRepository.findAll();
+      return this.patientRepository.findAll();
     }
 
     @PostMapping
