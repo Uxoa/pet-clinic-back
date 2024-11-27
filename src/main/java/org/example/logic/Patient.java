@@ -1,5 +1,7 @@
 package org.example.logic;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class Patient {
 
     @ManyToOne
     @JoinColumn(name = "mentor_id")
+    @JsonIgnoreProperties(value = "patients")
     private Mentor mentor;
 
     public Patient(String name, String species, String race, int age) {
