@@ -56,11 +56,14 @@ public class MentorController {
     }
     
     @DeleteMapping("/{id}")
-    public void deleteMentor(@PathVariable int id){
-        Optional<Mentor> optionalMentor = m
-        if(Mentor)
+    public ResponseEntity<Mentor> deleteMentor(@PathVariable int id){
+        Optional<Mentor> mentorToDelete = mentorRepository.findById(id);
+        if( mentorToDelete.get().getPatients().isEmpty()){
+            mentorRepository.deleteById(id);
+            return new ResponseEntity<>(mentorToDelete.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        this.mentorRepository.deleteById(id);
     }
     
     
