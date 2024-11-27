@@ -24,6 +24,7 @@ public class Mentor {
     @JsonIgnoreProperties(value = "mentor")
     private List<Patient> patients;
     
+    
     public List<Patient> getPatients() {
         return patients;
     }
@@ -32,11 +33,13 @@ public class Mentor {
         this.patients = patients;
     }
     
-    public Mentor(int id, String name, String surname, int phone) {
-        this.id = id;
+    public Mentor(String name, String surname, int phone) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
+    }
+    
+    public Mentor() {
     }
 
     public String getSurname() {
@@ -57,6 +60,5 @@ public class Mentor {
         return phone;
     }
 
-    public Mentor() {
-    }
+
 }

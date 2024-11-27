@@ -51,5 +51,10 @@ public class MentorController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     
+    @DeleteMapping("/{id}")
+    public void deleteMentor(@PathVariable int id){
+        this.mentorRepository.deleteById(id);
+    }
+    
     
 }
