@@ -25,7 +25,7 @@ public class PatientAcceptanceTest {
     @Test
     void givenValidUser_whenSaving_thenReturnSuccess() throws Exception {
 
-        Patient patient1 = new Patient("nombre", "gato", "raza1", 3);
+        Patient patient1 = new Patient("nombre", "gato", "raza1", "3");
         patientRepository.save(patient1);
 
         String jsonreponse =

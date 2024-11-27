@@ -17,14 +17,14 @@ public class Patient {
     @Column(name="race")
     private String race = "unknown";
     @Column(name="age")
-    private int age;
+    private String age;
 
     @ManyToOne
     @JoinColumn(name = "mentor_id")
     @JsonIgnoreProperties(value = "patients")
     private Mentor mentor;
 
-    public Patient(String name, String specie, String race, int age) {
+    public Patient(String name, String specie, String race, String age) {
         this.name = name;
         this.specie = specie;
         this.race = race;
@@ -52,12 +52,37 @@ public class Patient {
         return race;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
     public void setRace(String race) {
         this.race = race;
+    }
+
+    public void setName(String name) {
+        if (name == null){
+            return;
+        }
+        this.name = name;
+    }
+
+    public void setSpecie(String specie) {
+        if (specie == null){
+            return;
+        }
+        this.specie = specie;
+    }
+
+    public void setAge(String age) {
+        if (age == null){
+            return;
+        }
+        this.age = age;
+    }
+
+    public void setMentor(Mentor mentor) {
+        this.mentor = mentor;
     }
 
     public Patient() {

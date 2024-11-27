@@ -40,4 +40,21 @@ public class PatientController {
         return this.patientRepository.findById(id);
     }
 
+    @PutMapping ("/{id}")
+    public ResponseEntity<Patient> updatePatient(@PathVariable int id, @RequestBody Patient patientRequest){
+        Optional<Patient> optionalPatient = patientRepository.findById(id);
+        if(optionalPatient.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Patient patientToUpdate = optionalPatient.get();
+        patientToUpdate.setName(patientRequest.getName());
+        patientToUpdate.setSpecie(patientRequest.getSpecie());
+        patientToUpdate.setRace(patientRequest.getRace());
+        patientToUpdate.setAge(patientRequest.getAge());
+        patientToUpdate.setMentor(patientRequest.getMentor());
+        patientRepository.save(patientToUpdate);
+
+        return new ResponseEntity<>(patientToUpdate, HttpStatus.OK);
+    }
 }
