@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -73,5 +74,26 @@ class MentorControllerTest {
 
     }
 
+    @Test
+    void givenMentorById_whenDelete_theReturnSuccess() throws Exception {
+        Mentor mentor = new Mentor("Ivan", "Perez", "987654321");
+        mentorRepository.save(mentor);
+
+        String jsonreponse =
+                """
+                        
+                                        {
+                                            "id": 1,
+                                            "name": "Ivan",
+                                            "surname": "Perez",
+                                            "phone": "987654321"
+                                        }
+                        
+                        """;
+
+        mockMvc.perform(delete("/mentors/1", mentor.getId()).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonreponse));
+    }
 
 }
