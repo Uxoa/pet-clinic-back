@@ -25,9 +25,6 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<Patient> createPatient(@RequestBody Patient patient){
-        if (patient.getRace() == null || patient.getRace().isEmpty() || patient.getRace().equals(".*[0-9].*")){
-            patient.setRace("unknown");
-        }
         Patient savedPatient = patientRepository.save(patient);
         return new ResponseEntity<>(savedPatient, HttpStatus.CREATED);
 

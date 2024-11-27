@@ -16,7 +16,7 @@ public class Patient {
     @Column(name="species")
     private String species;
     @Column(name="race")
-    private String race;
+    private String race = "unknown";
     @Column(name="age")
     private int age;
 
