@@ -2,6 +2,8 @@ package org.example.controllers;
 
 import org.example.logic.Mentor;
 import org.example.logic.MentorRepository;
+import org.example.logic.Patient;
+import org.example.logic.PatientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +15,11 @@ import java.util.Optional;
 @RequestMapping("/mentors")
 public class MentorController {
     private final MentorRepository mentorRepository;
-
-    public MentorController(MentorRepository mentorRepository) {
+    private final PatientRepository patientRepository;
+    
+    public MentorController(MentorRepository mentorRepository, PatientRepository patientRepository) {
         this.mentorRepository = mentorRepository;
+        this.patientRepository = patientRepository;
     }
 
     @GetMapping
@@ -53,6 +57,9 @@ public class MentorController {
     
     @DeleteMapping("/{id}")
     public void deleteMentor(@PathVariable int id){
+        Optional<Mentor> optionalMentor = m
+        if(Mentor)
+
         this.mentorRepository.deleteById(id);
     }
     
