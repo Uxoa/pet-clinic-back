@@ -26,7 +26,7 @@ class MentorControllerTest {
     
     @Test
     void givenAValidMentor_whenSaving_thenReturnSuccess() throws Exception {
-        Mentor mentor1 = new Mentor("Fran", "Perez", 123456789);
+        Mentor mentor1 = new Mentor("Fran", "Perez", "123456789");
         mentorRepository.save(mentor1);
         
         String jsonreponse =

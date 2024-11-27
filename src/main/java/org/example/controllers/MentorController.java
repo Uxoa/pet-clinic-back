@@ -2,7 +2,6 @@ package org.example.controllers;
 
 import org.example.logic.Mentor;
 import org.example.logic.MentorRepository;
-import org.example.logic.Patient;
 import org.example.logic.PatientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,6 +64,23 @@ public class MentorController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
+
+    @PutMapping ("/{id}")
+    public ResponseEntity<Mentor> updateMentor(@PathVariable int id, @RequestBody Mentor mentorRequest){
+        Optional<Mentor> optionalMentor = mentorRepository.findById(id);
+        if(optionalMentor.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Mentor mentorToUpdate = optionalMentor.get();
+        mentorToUpdate.setName(mentorRequest.getName());
+        mentorToUpdate.setSurname(mentorRequest.getSurname());
+        mentorToUpdate.setPhone(mentorRequest.getPhone());
+        mentorRepository.save(mentorToUpdate);
+
+        return new ResponseEntity<>(mentorToUpdate, HttpStatus.OK);
+    }
+
     
     
 }

@@ -18,7 +18,7 @@ public class Mentor {
     @Column(name = "surname")
     private String surname;
     @Column(name="phone")
-    private int phone;
+    private String phone;
 
     @OneToMany(mappedBy = "mentor", cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = "mentor")
@@ -33,7 +33,7 @@ public class Mentor {
         this.patients = patients;
     }
     
-    public Mentor(String name, String surname, int phone) {
+    public Mentor(String name, String surname, String phone) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
@@ -46,8 +46,6 @@ public class Mentor {
         return surname;
     }
 
-
-
     public int getId() {
         return id;
     }
@@ -56,9 +54,30 @@ public class Mentor {
         return name;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
+    public void setName(String name) {
+        if(name==null){
+            return;
+        }
+        this.name = name;
 
+    }
+
+    public void setSurname(String surname) {
+        if (surname == null){
+            return;
+        }
+        this.surname = surname;
+    }
+
+    public void setPhone(String phone) {
+        if (phone == null){
+            return;
+        }
+
+        this.phone = phone;
+    }
 }
