@@ -1,6 +1,5 @@
 package org.example.logic;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -13,8 +12,8 @@ public class Patient {
     private int id;
     @Column(name="name")
     private String name;
-    @Column(name="species")
-    private String species;
+    @Column(name="specie")
+    private String specie;
     @Column(name="race")
     private String race = "unknown";
     @Column(name="age")
@@ -25,9 +24,9 @@ public class Patient {
     @JsonIgnoreProperties(value = "patients")
     private Mentor mentor;
 
-    public Patient(String name, String species, String race, int age) {
+    public Patient(String name, String specie, String race, int age) {
         this.name = name;
-        this.species = species;
+        this.specie = specie;
         this.race = race;
         this.age = age;
 
@@ -45,8 +44,8 @@ public class Patient {
         return name;
     }
 
-    public String getSpecies() {
-        return species;
+    public String getSpecie() {
+        return specie;
     }
 
     public String getRace() {

@@ -10,8 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -75,7 +74,7 @@ class MentorControllerTest {
     }
 
     @Test
-    void givenMentorById_whenDelete_theReturnSuccess() throws Exception {
+    void givenMentorById_whenDelete_thenReturnSuccess() throws Exception {
         Mentor mentor = new Mentor("Ivan", "Perez", "987654321");
         mentorRepository.save(mentor);
 
@@ -94,6 +93,41 @@ class MentorControllerTest {
         mockMvc.perform(delete("/mentors/1", mentor.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
+    }
+
+    @Test
+    void givenMentorById_whenUpdate_thenReturnSuccess() throws Exception {
+        Mentor mentor = new Mentor("Layla", "Perez", "987654321");
+        mentorRepository.save(mentor);
+
+        String jsonreponse =
+                """
+                        
+                                        {
+                                            "id": 1,
+                                            "name": "Layl",
+                                            "surname": "Pere",
+                                            "phone": "987654322"
+                                        }
+                        
+                        """;
+
+        String jsonreponse1 =
+                """
+                        
+                                        {
+                                            "id": 1,
+                                            "name": "Layl",
+                                            "surname": "Pere",
+                                            "phone": "987654322"
+                                        }
+                        
+                        """;
+
+        mockMvc.perform(put("/mentors/1", mentor.getId()).contentType(MediaType.APPLICATION_JSON)
+                .content(jsonreponse))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonreponse1));
     }
 
 }
