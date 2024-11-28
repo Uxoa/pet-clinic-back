@@ -128,6 +128,16 @@ Este diseño organiza las relaciones entre pacientes y tutores, con funcionalida
 
 ---
 
+## **Esquema E/R**
+
+![Captura de pantalla 2024-11-28 103814](https://github.com/user-attachments/assets/5d6ec824-7f75-41a9-b88d-8679522478d2)
+
+Uno a Muchos (1:N):
+
+- Cada tutor (Menthor) puede estar asociado con múltiples pacientes (Patients), pero cada paciente tiene un único tutor. Esto se implementa mediante la llave foránea fk_id_Menthor en la tabla Patients, que referencia el Id en la tabla Menthor.
+
+---
+
 ## **Planificación**
 
 - Trello https://trello.com/invite/b/673c9f6e1dbab5ef51910ebf/ATTI7adb4466e1d431c6b699b7cfcee1e142C3D560B0/clinicaveterinaria
@@ -150,3 +160,9 @@ Este diseño organiza las relaciones entre pacientes y tutores, con funcionalida
 3. El sistema estará preparado para ser extendido en el siguiente sprint, donde se incluirá la gestión de citas.
 
 ---
+
+
+
+
+
+
