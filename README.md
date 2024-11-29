@@ -106,6 +106,8 @@ Margarita necesita poder registrar y gestionar a los pacientes de su clínica. C
 
 ![Captura de pantalla 2024-11-28 102249](https://github.com/user-attachments/assets/1185712d-4051-47c3-92e0-2bdc9be526e0)
 
+https://lucid.app/lucidchart/9609464a-7333-4dbf-a6cb-40a017e96fa2/edit?invitationId=inv_9be1c35e-06d5-42d8-bb90-6c8deadbb393&page=0_0#
+
 
 Este esquema representa el diseño del sistema de gestión para una clínica veterinaria, mostrando los controladores, repositorios y entidades principales:
 
