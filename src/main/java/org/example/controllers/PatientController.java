@@ -36,8 +36,12 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Patient> searchById(@PathVariable int id){
-        return this.patientRepository.findById(id);
+    public ResponseEntity<Patient> searchById(@PathVariable int id){
+        Optional<Patient> optionalPatient = patientRepository.findById(id);
+        if(optionalPatient.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(optionalPatient.get(), HttpStatus.OK);
     }
 
     @PutMapping ("/{id}")

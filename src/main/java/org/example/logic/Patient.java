@@ -4,27 +4,27 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Patient")
+@Table(name = "Patient")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_patient", nullable = false)
     private int id;
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-    @Column(name="specie")
+    @Column(name = "specie")
     private String specie;
-    @Column(name="race")
+    @Column(name = "race")
     private String race = "unknown";
-    @Column(name="age")
-    private String age;
+    @Column(name = "age")
+    private int age;
 
     @ManyToOne
     @JoinColumn(name = "mentor_id")
     @JsonIgnoreProperties(value = "patients")
     private Mentor mentor;
 
-    public Patient(String name, String specie, String race, String age) {
+    public Patient(String name, String specie, String race, int age) {
         this.name = name;
         this.specie = specie;
         this.race = race;
@@ -52,7 +52,7 @@ public class Patient {
         return race;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
@@ -61,27 +61,27 @@ public class Patient {
     }
 
     public void setName(String name) {
-        if (name == null){
+        if (name == null) {
             return;
         }
         this.name = name;
     }
 
     public void setSpecie(String specie) {
-        if (specie == null){
+        if (specie == null) {
             return;
         }
         this.specie = specie;
     }
 
-    public void setAge(String age) {
-        if (age == null){
-            return;
-        }
+    public void setAge(int age) {
         this.age = age;
     }
 
     public void setMentor(Mentor mentor) {
+        if (mentor == null) {
+            return;
+        }
         this.mentor = mentor;
     }
 
