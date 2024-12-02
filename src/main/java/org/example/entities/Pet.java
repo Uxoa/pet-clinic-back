@@ -1,14 +1,14 @@
-package org.example.logic;
+package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Patient")
-public class Patient {
+@Table(name = "Pet")
+public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_patient", nullable = false)
+    @Column(name = "id_pet", nullable = false)
     private int id;
     @Column(name = "name")
     private String name;
@@ -20,11 +20,11 @@ public class Patient {
     private int age;
 
     @ManyToOne
-    @JoinColumn(name = "mentor_id")
-    @JsonIgnoreProperties(value = "patients")
-    private Mentor mentor;
+    @JoinColumn(name = "guardian_id")
+    @JsonIgnoreProperties(value = "pets")
+    private Guardian guardian;
 
-    public Patient(String name, String specie, String race, int age) {
+    public Pet(String name, String specie, String race, int age) {
         this.name = name;
         this.specie = specie;
         this.race = race;
@@ -32,8 +32,8 @@ public class Patient {
 
     }
 
-    public Mentor getMentor() {
-        return mentor;
+    public Guardian getGuardian() {
+        return guardian;
     }
 
     public int getId() {
@@ -78,13 +78,13 @@ public class Patient {
         this.age = age;
     }
 
-    public void setMentor(Mentor mentor) {
-        if (mentor == null) {
+    public void setGuardian(Guardian guardian) {
+        if (guardian == null) {
             return;
         }
-        this.mentor = mentor;
+        this.guardian = guardian;
     }
 
-    public Patient() {
+    public Pet() {
     }
 }

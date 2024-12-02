@@ -1,7 +1,7 @@
 package org.example.controllers;
 
-import org.example.logic.Patient;
-import org.example.logic.PatientRepository;
+import org.example.entities.Pet;
+import org.example.repositories.PetRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,9 +18,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-public class PatientControllerTest {
+public class PetControllerTest {
     @Autowired
-    private PatientRepository patientRepository;
+    private PetRepository petRepository;
 
     @Autowired
     MockMvc mockMvc;
@@ -28,8 +28,8 @@ public class PatientControllerTest {
     @Test
     void givenValidUser_whenSaving_thenReturnSuccess() throws Exception {
 
-        Patient patient1 = new Patient("nombre", "gato", "raza1", 3);
-        patientRepository.save(patient1);
+        Pet pet1 = new Pet("nombre", "gato", "raza1", 3);
+        petRepository.save(pet1);
 
         String jsonresponse = String.format(
                 """
@@ -43,11 +43,11 @@ public class PatientControllerTest {
                     }
                 ]
                 """,
-                patient1.getId()
+                pet1.getId()
         );
 
         //when
-        mockMvc.perform(get("/patients").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/pets").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonresponse))
 
@@ -57,8 +57,8 @@ public class PatientControllerTest {
 
     @Test
     void givenPatientById_whenSearch_thenReturnSuccess() throws Exception {
-        Patient patient1 = new Patient("humita", "gato", "domestico", 2);
-        patientRepository.save(patient1);
+        Pet pet = new Pet("humita", "gato", "domestico", 2);
+        petRepository.save(pet);
 
         String jsonresponse =
                 """
@@ -82,9 +82,9 @@ public class PatientControllerTest {
 
     @Test
     void givenPatientById_whenDelete_theReturnSuccess() throws Exception {
-        Patient patient = new Patient("humita", "gato", "domestica", 2);
-        patientRepository.save(patient);
-        assertEquals(1, patientRepository.count());
+        Pet pet = new Pet("humita", "gato", "domestica", 2);
+        petRepository.save(pet);
+        assertEquals(1, petRepository.count());
 
         String jsonresponse1 =
                 """
@@ -99,16 +99,16 @@ public class PatientControllerTest {
                 ]
                 """;
 
-        mockMvc.perform(delete("/patients/" + patient.getId())
+        mockMvc.perform(delete("/pets/" + pet.getId())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-                assertEquals(0, patientRepository.count());
+                assertEquals(0, petRepository.count());
     }
 
     @Test
     void givenPatientById_whenUpdate_thenReturnSuccess() throws Exception {
-        Patient patient = new Patient("umi", "gato", "domestica", 2);
-        patientRepository.save(patient);
+        Pet pet = new Pet("umi", "gato", "domestica", 2);
+        petRepository.save(pet);
 
         String jsonrequest =
                 """
@@ -136,7 +136,7 @@ public class PatientControllerTest {
                 
                 """;
 
-        mockMvc.perform(put("/patients/1", patient.getId())
+        mockMvc.perform(put("/pets/1", pet.getId())
                 . contentType(MediaType.APPLICATION_JSON)
                 .content(jsonrequest))
                 .andExpect(status().isOk())

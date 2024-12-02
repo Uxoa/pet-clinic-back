@@ -1,7 +1,7 @@
 package org.example.controllers;
 
-import org.example.logic.Mentor;
-import org.example.logic.MentorRepository;
+import org.example.entities.Guardian;
+import org.example.repositories.GuardianRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -18,18 +17,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
-class MentorControllerTest {
+class GuardianControllerTest {
 
     @Autowired
-    private MentorRepository mentorRepository;
+    private GuardianRepository guardianRepository;
 
     @Autowired
     MockMvc mockMvc;
 
     @Test
     void givenAValidMentor_whenSaving_thenReturnSuccess() throws Exception {
-        Mentor mentor1 = new Mentor("Fran", "Perez", "123456789");
-        mentorRepository.save(mentor1);
+        Guardian guardian = new Guardian("Fran", "Perez", "fran@email.com", "123456789", "street 123");
+        guardianRepository.save(guardian);
 
         String jsonreponse =
                 """
@@ -38,12 +37,13 @@ class MentorControllerTest {
                                             "id": 1,
                                             "name": "Fran",
                                             "surname": "Perez",
-                                            "phone": "123456789"
-                                        }
+                                            "email": "fran@email.com",
+                                            "phone": "123456789",
+                                            "address": "street 123"                                        }
                                     ]
                         """;
 
-        mockMvc.perform(get("/mentors").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/guardians").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
 
@@ -51,12 +51,12 @@ class MentorControllerTest {
 
     @Test
     void givenMentorById_whenSearch_thenReturnSuccess() throws Exception {
-        Mentor mentor = new Mentor("Paloma", "Perez", "987654321");
-        Mentor mentor1 = new Mentor("Palom", "Perez", "987654321");
-        Mentor mentor2 = new Mentor("Palo", "Perez", "987654321");
-        mentorRepository.save(mentor);
-        mentorRepository.save(mentor1);
-        mentorRepository.save(mentor2);
+        Guardian guardian = new Guardian("Paloma", "Perez", "paloma@email.com", "987654321", "calle 123");
+        Guardian guardian1 = new Guardian("Palom", "Perez","paloma@email.com", "987654321", "calle 123");
+        Guardian guardian2 = new Guardian("Palo", "Perez", "paloma@email.com", "987654321", "calle 123");
+        guardianRepository.save(guardian);
+        guardianRepository.save(guardian1);
+        guardianRepository.save(guardian2);
 
         String jsonreponse =
                 """
@@ -65,11 +65,13 @@ class MentorControllerTest {
                                             "id": 1,
                                             "name": "Paloma",
                                             "surname": "Perez",
-                                            "phone": "987654321"
+                                            "email": "paloma@email.com",
+                                            "phone": "987654321",
+                                            "address": "calle 123"
                                         }
                         
                         """;
-        mockMvc.perform(get("/mentors/1", mentor1.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/guardians/1", guardian1.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
 
@@ -77,8 +79,8 @@ class MentorControllerTest {
 
     @Test
     void givenMentorById_whenDelete_thenReturnSuccess() throws Exception {
-        Mentor mentor = new Mentor("Ivan", "Perez", "987654321");
-        mentorRepository.save(mentor);
+        Guardian guardian = new Guardian("Ivan", "Perez", "ivan@email.com","987654321", "street 123");
+        guardianRepository.save(guardian);
 
         String jsonreponse =
                 """
@@ -87,20 +89,22 @@ class MentorControllerTest {
                                             "id": 1,
                                             "name": "Ivan",
                                             "surname": "Perez",
-                                            "phone": "987654321"
+                                            "email": "ivan@email.com",
+                                            "phone": "987654321",
+                                            "address": "street 123"
                                         }
                         
                         """;
 
-        mockMvc.perform(delete("/mentors/1", mentor.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/guardians/1", guardian.getId()).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
     }
 
     @Test
     void givenMentorById_whenUpdate_thenReturnSuccess() throws Exception {
-        Mentor mentor = new Mentor("Layla", "Perez", "987654321");
-        mentorRepository.save(mentor);
+        Guardian guardian = new Guardian("Layla", "Perez", "layla@email.com", "987654321", "calle 123");
+        guardianRepository.save(guardian);
 
         String jsonreponse =
                 """
@@ -109,7 +113,9 @@ class MentorControllerTest {
                                             "id": 1,
                                             "name": "Layl",
                                             "surname": "Pere",
-                                            "phone": "987654322"
+                                            "email": "layla@email.com",
+                                            "phone": "987654321",
+                                            "address": "calle 123"
                                         }
                         
                         """;
@@ -122,11 +128,14 @@ class MentorControllerTest {
                                             "name": "Layl",
                                             "surname": "Pere",
                                             "phone": "987654322"
+                                            "email": "layla@email.com",
+                                            "phone": "987654321",
+                                            "address": "calle 123"
                                         }
                         
                         """;
 
-        mockMvc.perform(put("/mentors/1", mentor.getId()).contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(put("/guardians/1", guardian.getId()).contentType(MediaType.APPLICATION_JSON)
                 .content(jsonreponse))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse1));

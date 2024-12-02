@@ -1,45 +1,57 @@
-package org.example.logic;
+package org.example.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.List;
 
 @Entity
-@Table(name="Mentor")
-public class Mentor {
+@Table(name="Guardian")
+public class Guardian {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_mentor", nullable = false)
+    @Column(name = "id_guardian", nullable = false)
     private int id;
+
     @Column(name = "name")
+    @NotNull
     private String name;
     @Column(name = "surname")
     private String surname;
+
+    @NotNull
+    /*@Email*/
+    private String email;
+
     @Column(name="phone")
     private String phone;
+    private String address;
 
-    @OneToMany(mappedBy = "mentor", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties(value = "mentor")
-    private List<Patient> patients;
-    
-    
-    public List<Patient> getPatients() {
-        return patients;
+
+    @OneToMany(mappedBy = "guardian", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = "guardian")
+    private List<Pet> pets;
+
+
+
+    public List<Pet> getPet() {
+        return pets;
     }
     
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
     }
-    
-    public Mentor(String name, String surname, String phone) {
+
+    public Guardian(String name, String surname, String email, String phone, String address) {
         this.name = name;
         this.surname = surname;
+        this.email = email;
         this.phone = phone;
+        this.address = address;
     }
-    
-    public Mentor() {
+
+    public Guardian() {
     }
 
     public String getSurname() {
@@ -48,6 +60,14 @@ public class Mentor {
 
     public int getId() {
         return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getName() {
