@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/pets")
@@ -22,6 +24,12 @@ public class PetController {
         Pet pet = petService.createPet(petRequest);
         return new ResponseEntity<>(pet, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public List<Pet> showAllPets(){
+        return this.petService.findAll();
+    }
+
 
     /*
 

@@ -9,6 +9,7 @@ import org.example.repositories.PetRepository;
 import org.example.services.GuardianService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,4 +30,7 @@ public class PetService {
 
     }
 
+    public List<Pet> findAll() {
+        return petRepository.findAll();
+    }
 }
