@@ -1,16 +1,17 @@
 package org.example.dtos;
 
-import jakarta.persistence.Entity;
-import org.example.entities.Guardian;
-import org.example.entities.Pet;
 
-import java.util.List;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public record GuardianRequest(
+        @NotNull(message = "The name cannot be null.")
         String name,
-        String surname,
+        @Email
         String email,
+        @NotNull
+        @Size(min = 8, message = "The phone cannot be less than 8 numbers.")
         String phone,
         String address
 ){

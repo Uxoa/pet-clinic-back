@@ -10,7 +10,7 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_appointment", nullable = false)
-    private int id;
+    private Long id;
     @Column(name = "date")
     private String date;
     @Column(name = "time")
@@ -24,18 +24,21 @@ public class Appointment {
     @JsonIgnoreProperties(value = "appointment")
     private Pet pet;
 
-    public Appointment(int id, String date, String time, String reason) {
+    public Appointment() {
+    }
+
+    public Appointment(Long id, String date, String time, String reason) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.reason = reason;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
