@@ -51,24 +51,23 @@ class GuardianControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(content().json(response));
     }
-    /*
+
     @Test
     void givenAValidMentor_whenSaving_thenReturnSuccess() throws Exception {
-        Guardian guardian = new Guardian("Fran", "Perez", "fran@email.com", "123456789", "street 123");
+        Guardian guardian = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
         guardianRepository.save(guardian);
 
         String jsonreponse =
                 """
-                                    [
-                                        {
-                                            "id": 1,
-                                            "name": "Fran",
-                                            "surname": "Perez",
-                                            "email": "fran@email.com",
-                                            "phone": "123456789",
-                                            "address": "street 123"
-                                        }
-                                    ]
+                                [
+                                	{
+                                	  "id": 1,
+                                	  "name": "Alice Johnson",
+                                	  "email": "alice.johnson@email.com",
+                                	  "phone": "987654321",
+                                	  "address": "123 Meadow Lane"
+                                	}
+                                ]
                         """;
 
         mockMvc.perform(get("/guardians").contentType(MediaType.APPLICATION_JSON))
@@ -76,7 +75,7 @@ class GuardianControllerTest {
                 .andExpect(content().json(jsonreponse));
 
     }
-
+/*
     @Test
     void givenMentorById_whenSearch_thenReturnSuccess() throws Exception {
         Guardian guardian = new Guardian("Paloma", "Perez", "paloma@email.com", "987654321", "calle 123");

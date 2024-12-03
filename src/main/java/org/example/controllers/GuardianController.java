@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/guardians")
@@ -19,18 +18,10 @@ public class GuardianController {
         this.guardianServices = guardianServices;
     }
 
-    /*private final GuardianRepository guardianRepository;
-    private final PetRepository petRepository;
-
-    public GuardianController(GuardianRepository guardianRepository, PetRepository petRepository) {
-        this.guardianRepository = guardianRepository;
-        this.petRepository = petRepository;
-    }
-
     @GetMapping
     public List<Guardian> showAllGuardians(){
-        return this.guardianRepository.findAll();
-    }*/
+        return guardianServices.findAll();
+    }
 
     @PostMapping
     public ResponseEntity<Guardian> createGuardian(@RequestBody GuardianRequest guardianRequest){
@@ -40,38 +31,24 @@ public class GuardianController {
 
     }
 
-/*
     @GetMapping("/{id}")
-    public ResponseEntity<Guardian> getGuardianById(@PathVariable int id ){
-        Optional<Guardian> optionalGuardian = guardianRepository.findById(id);
-
-        if (optionalGuardian.isPresent()) {
-            return new ResponseEntity<>(optionalGuardian.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public Guardian getGuardianById (@PathVariable int id){
+        return guardianServices.findById(id);
     }
+
 
     @GetMapping("/name/{name}")
-    public ResponseEntity<Guardian> getGuardianByName(@PathVariable String name ){
-        Optional<Guardian> optionalGuardian = guardianRepository.findByName(name);
-
-        if (optionalGuardian.isPresent()) {
-            return new ResponseEntity<>(optionalGuardian.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public List<Guardian> getGuardianByName(@PathVariable String name) {
+        return guardianServices.findByName(name);
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Guardian> deleteGuardian(@PathVariable int id){
-        Optional<Guardian> guardianToDelete = guardianRepository.findById(id);
-        if( guardianToDelete.get().getPet().isEmpty()){
-            guardianRepository.deleteById(id);
-            return new ResponseEntity<>(guardianToDelete.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        Guardian guardianToDelete = guardianServices.deleteById(id);
+        return new ResponseEntity<>(guardianToDelete, HttpStatus.OK);
 
     }
-
+/*
     @PutMapping ("/{id}")
     public ResponseEntity<Guardian> updateGuardian(@PathVariable int id, @RequestBody Guardian guardian){
         Optional<Guardian> optionalGuardian = guardianRepository.findById(id);
