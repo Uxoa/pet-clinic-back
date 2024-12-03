@@ -18,6 +18,7 @@ public class GuardianController {
     public GuardianController(GuardianService guardianService) {
         this.guardianService = guardianService;
     }
+
     @GetMapping
     public List<Guardian> getGuardians(@RequestParam(name = "name", required = false) String name) {
         if (name != null && !name.isEmpty()) {

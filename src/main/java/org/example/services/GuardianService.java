@@ -6,7 +6,6 @@ import org.example.entities.Guardian;
 import org.example.exeptions.GuardianNotFoundException;
 import org.example.mappers.GuardianMapper;
 import org.example.repositories.GuardianRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

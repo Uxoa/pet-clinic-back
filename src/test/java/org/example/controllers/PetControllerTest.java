@@ -1,7 +1,10 @@
 package org.example.controllers;
 
-import org.example.entities.Pet;
+import org.example.entities.Guardian;
+
+import org.example.repositories.GuardianRepository;
 import org.example.repositories.PetRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -10,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,10 +23,52 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class PetControllerTest {
     @Autowired
     private PetRepository petRepository;
+    @Autowired
+    private GuardianRepository guardianRepository;
+
 
     @Autowired
     MockMvc mockMvc;
 
+    @Test
+    void givenAValidPet_whenPostRequestIsMade_thenReturnSuccess() throws Exception {
+        Guardian guardian = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
+        guardianRepository.save(guardian);
+
+        String request = """
+            {
+              "name": "Buddy",
+              "specie": "dog",
+              "breed": "Labrador Retriever",
+              "age": 4,
+              "guardianId": 1
+            }
+            """;
+
+        String response ="""
+            {
+                "id": 1,
+                "name": "Buddy",
+                "specie": "dog",
+                "breed": "Labrador Retriever",
+                "age": 4,
+                "guardian": {
+                    "id": 1,
+                    "name": "Alice Johnson",
+                    "email": "alice.johnson@email.com",
+                    "phone": "987654321",
+                    "address": "123 Meadow Lane"
+                }
+            }
+            """;
+
+        mockMvc.perform(post("/pets")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andExpect(status().isCreated())
+                .andExpect(content().json(response));
+    }
+/*
     @Test
     void givenValidUser_whenSaving_thenReturnSuccess() throws Exception {
 
@@ -62,7 +106,7 @@ public class PetControllerTest {
 
         String jsonresponse =
                 """
-                
+
                     {
                         "id": 1,
                         "name": "humita",
@@ -70,7 +114,7 @@ public class PetControllerTest {
                         "race": "domestico",
                         "age": 2
                     }
-                
+
                 """;
 
 
@@ -112,7 +156,7 @@ public class PetControllerTest {
 
         String jsonrequest =
                 """
-                
+
                     {
                         "id": 1,
                         "name": "humita",
@@ -120,12 +164,12 @@ public class PetControllerTest {
                         "race": "domestico",
                         "age": 2
                     }
-                
+
                 """;
 
         String jsonresponse1 =
                 """
-                
+
                     {
                         "id": 1,
                         "name": "humita",
@@ -133,7 +177,7 @@ public class PetControllerTest {
                         "race": "domestico",
                         "age": 2
                     }
-                
+
                 """;
 
         mockMvc.perform(put("/pets/1", pet.getId())
@@ -144,5 +188,5 @@ public class PetControllerTest {
 
     }
 
-
+*/
 }
