@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -26,7 +27,7 @@ class GuardianControllerTest {
     MockMvc mockMvc;
 
     @Test
-    void createAGuardian() throws Exception {
+    void givenValidGuardian_whenPutRequestIsMade_thenReturnSuccess() throws Exception {
         String request = """
                 {
                   "name": "Alice Johnson",
@@ -53,7 +54,7 @@ class GuardianControllerTest {
     }
 
     @Test
-    void givenAValidMentor_whenSaving_thenReturnSuccess() throws Exception {
+    void givenValidGuardian_whenGetRequestIsMade_thenReturnSuccess() throws Exception {
         Guardian guardian = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
         guardianRepository.save(guardian);
 
@@ -75,97 +76,82 @@ class GuardianControllerTest {
                 .andExpect(content().json(jsonreponse));
 
     }
-/*
+
     @Test
-    void givenMentorById_whenSearch_thenReturnSuccess() throws Exception {
-        Guardian guardian = new Guardian("Paloma", "Perez", "paloma@email.com", "987654321", "calle 123");
-        Guardian guardian1 = new Guardian("Palom", "Perez","paloma@email.com", "987654321", "calle 123");
-        Guardian guardian2 = new Guardian("Palo", "Perez", "paloma@email.com", "987654321", "calle 123");
+    void givenValidGuardianId_whenGetRequestIsMade_thenReturnSuccess() throws Exception {
+        Guardian guardian = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
         guardianRepository.save(guardian);
-        guardianRepository.save(guardian1);
-        guardianRepository.save(guardian2);
+
 
         String jsonreponse =
                 """
-                        
-                                        {
-                                            "id": 1,
-                                            "name": "Paloma",
-                                            "surname": "Perez",
-                                            "email": "paloma@email.com",
-                                            "phone": "987654321",
-                                            "address": "calle 123"
-                                        }
-                        
+                                	{
+                                	  "id": 1,
+                                	  "name": "Alice Johnson",
+                                	  "email": "alice.johnson@email.com",
+                                	  "phone": "987654321",
+                                	  "address": "123 Meadow Lane"
+                                	}
                         """;
-        mockMvc.perform(get("/guardians/1", guardian1.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/guardians/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
 
     }
 
     @Test
-    void givenMentorById_whenDelete_thenReturnSuccess() throws Exception {
-        Guardian guardian = new Guardian("Ivan", "Perez", "ivan@email.com","987654321", "street 123");
+    void givenValidGuardianId_whenDeleteRequestIsMade_thenReturnSuccessAndGuardianRepositoryEmpty() throws Exception {
+        Guardian guardian = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
         guardianRepository.save(guardian);
 
         String jsonreponse =
                 """
-                        
-                                        {
-                                            "id": 1,
-                                            "name": "Ivan",
-                                            "surname": "Perez",
-                                            "email": "ivan@email.com",
-                                            "phone": "987654321",
-                                            "address": "street 123"
-                                        }
-                        
+                                	{
+                                	  "id": 1,
+                                	  "name": "Alice Johnson",
+                                	  "email": "alice.johnson@email.com",
+                                	  "phone": "987654321",
+                                	  "address": "123 Meadow Lane"
+                                	}
                         """;
 
-        mockMvc.perform(delete("/guardians/1", guardian.getId()).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(delete("/guardians/1").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
+        assertEquals(0, guardianRepository.count());
     }
 
     @Test
-    void givenMentorById_whenUpdate_thenReturnSuccess() throws Exception {
-        Guardian guardian = new Guardian("Layla", "Perez", "layla@email.com", "987654321", "calle 123");
+    void givenValidGuardianIdAndValidGuardian_whenPutRequestIsMade_thenReturnSuccess() throws Exception {
+        Guardian guardian = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
         guardianRepository.save(guardian);
+
+        String jsonrequest =
+                """
+                                 {
+                                   "id": 1,
+                                   "name": "Alice Johnson",
+                                   "email": "alice.johnson@email.com",
+                                   "phone": "123456789",
+                                   "address": "123 Meadow Lane"
+                                 }
+                     """;
 
         String jsonreponse =
                 """
-                        
-                                        {
-                                            "id": 1,
-                                            "name": "Layl",
-                                            "surname": "Pere",
-                                            "email": "layla@email.com",
-                                            "phone": "987654321",
-                                            "address": "calle 123"
-                                        }
-                        
-                        """;
+                               {
+                                 "id": 1,
+                                 "name": "Alice Johnson",
+                                 "email": "alice.johnson@email.com",
+                                 "phone": "123456789",
+                                 "address": "123 Meadow Lane"
+                               }
+                   """;
 
-        String jsonreponse1 =
-                """
-                        
-                                        {
-                                            "id": 1,
-                                            "name": "Layl",
-                                            "surname": "Pere",
-                                            "phone": "987654322"
-                                            "email": "layla@email.com",
-                                            "phone": "987654321",
-                                            "address": "calle 123"
-                                        }
-                        
-                        """;
-
-        mockMvc.perform(put("/guardians/1", guardian.getId()).contentType(MediaType.APPLICATION_JSON)
-                .content(jsonreponse))
+        mockMvc.perform(put("/guardians/1").contentType(MediaType.APPLICATION_JSON)
+                .content(jsonrequest))
                 .andExpect(status().isOk())
-                .andExpect(content().json(jsonreponse1));
-    }*/
+                .andExpect(content().json(jsonreponse));
+    }
 
 }

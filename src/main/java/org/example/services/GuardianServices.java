@@ -5,6 +5,9 @@ import org.example.entities.Guardian;
 import org.example.exeptions.GuardianNotFoundException;
 import org.example.mappers.GuardianMapper;
 import org.example.repositories.GuardianRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +15,7 @@ import java.util.Optional;
 
 @Service
 public class GuardianServices {
-
+    @Autowired
     private GuardianRepository guardianRepository;
 
     public GuardianServices(GuardianRepository guardianRepository) {
@@ -53,5 +56,20 @@ public class GuardianServices {
             return guardianToDelete.get();
         }
         throw new GuardianNotFoundException("Guardian Have Pets");
+    }
+
+    public Guardian updateGuardian(int id, GuardianRequest guardianRequest) {
+        Optional<Guardian> guardianToUpdate = guardianRepository.findById(id);
+
+        if(guardianToUpdate.isEmpty()){
+            throw new GuardianNotFoundException("Guardian Not Found");
+        }
+        Guardian guardian = GuardianMapper.fromRequest(guardianRequest);
+        guardianToUpdate.get().setName(guardian.getName());
+        guardianToUpdate.get().setPhone(guardian.getPhone());
+        guardianToUpdate.get().setEmail(guardian.getEmail());
+        guardianToUpdate.get().setAddress(guardian.getAddress());
+
+        return guardianRepository.save(guardianToUpdate.get());
     }
 }
