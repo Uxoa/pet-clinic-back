@@ -25,12 +25,10 @@ public class Guardian {
     private int id;
 
     @Column(name = "name")
-    @NotNull
     private String name;
 
+
     @Column(name = "email")
-    @NotNull
-    @Email
     private String email;
 
     @Column(name="phone")
@@ -51,5 +49,6 @@ public class Guardian {
         this.phone = phone;
         this.address = address;
     }
+
 
 }
