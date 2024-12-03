@@ -3,6 +3,8 @@ package org.example.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Pet")
 public class Pet {
@@ -19,10 +21,22 @@ public class Pet {
     @Column(name = "age")
     private int age;
 
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = "pet")
+    private List<Appointment> appointments;
+
     @ManyToOne
     @JoinColumn(name = "guardian_id")
     @JsonIgnoreProperties(value = "pets")
     private Guardian guardian;
+
+    public List<Appointment> getAppointment() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 
     public Pet(String name, String specie, String race, int age) {
         this.name = name;
