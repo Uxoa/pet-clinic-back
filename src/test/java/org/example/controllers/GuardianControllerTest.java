@@ -27,7 +27,7 @@ class GuardianControllerTest {
     MockMvc mockMvc;
 
     @Test
-    void givenValidGuardian_whenPutRequestIsMade_thenReturnSuccess() throws Exception {
+    void givenValidGuardian_whenPostRequestIsMade_thenReturnSuccess() throws Exception {
         String request = """
                 {
                   "name": "Alice Johnson",

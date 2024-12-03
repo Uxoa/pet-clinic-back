@@ -6,19 +6,16 @@ import org.example.exeptions.GuardianNotFoundException;
 import org.example.mappers.GuardianMapper;
 import org.example.repositories.GuardianRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GuardianServices {
-    @Autowired
+public class GuardianService {
     private GuardianRepository guardianRepository;
 
-    public GuardianServices(GuardianRepository guardianRepository) {
+    public GuardianService(GuardianRepository guardianRepository) {
         this.guardianRepository = guardianRepository;
     }
 
