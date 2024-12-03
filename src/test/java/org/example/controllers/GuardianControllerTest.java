@@ -75,6 +75,28 @@ class GuardianControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
 
+    }@Test
+    void givenValidGuardianName_whenGetRequestIsMade_thenReturnSuccess() throws Exception {
+        Guardian guardian = new Guardian("Alice", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
+        guardianRepository.save(guardian);
+
+        String jsonreponse =
+                """
+                                [
+                                	{
+                                	  "id": 1,
+                                	  "name": "Alice",
+                                	  "email": "alice.johnson@email.com",
+                                	  "phone": "987654321",
+                                	  "address": "123 Meadow Lane"
+                                	}
+                                ]
+                        """;
+
+        mockMvc.perform(get("/guardians?name=Alice").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonreponse));
+
     }
 
     @Test
