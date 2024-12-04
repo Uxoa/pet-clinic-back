@@ -3,8 +3,12 @@ package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "Appointment")
 public class Appointment {
     @Id
@@ -27,42 +31,12 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(Long id, String date, String time, String reason) {
+    public Appointment(Long id, String date, String time, String reason, Pet pet) {
         this.id = id;
         this.date = date;
         this.time = time;
         this.reason = reason;
+        this.pet = pet;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
 }
