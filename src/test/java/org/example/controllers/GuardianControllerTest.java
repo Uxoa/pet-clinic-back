@@ -1,5 +1,7 @@
 package org.example.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.dtos.GuardianRequest;
 import org.example.entities.Guardian;
 import org.example.repositories.GuardianRepository;
 import org.junit.jupiter.api.Test;
@@ -28,7 +30,8 @@ class GuardianControllerTest {
 
     @Test
     void givenValidGuardian_whenPostRequestIsMade_thenReturnSuccess() throws Exception {
-        String request = """
+        //String a =  new ObjectMapper().writeValueAsString(new GuardianRequest());
+        String guardianRequest = """
                 {
                   "name": "Alice Johnson",
                   "email": "alice.johnson@email.com",
@@ -36,6 +39,8 @@ class GuardianControllerTest {
                   "address": "123 Meadow Lane"
                 }
                 """;
+
+
         String response = """
                 {
                   "name": "Alice Johnson",
@@ -48,7 +53,7 @@ class GuardianControllerTest {
 
         mockMvc.perform(post("/guardians")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(request))
+                        .content(guardianRequest))
                 .andExpect(status().isCreated())
                 .andExpect(content().json(response));
     }
@@ -71,7 +76,8 @@ class GuardianControllerTest {
                                 ]
                         """;
 
-        mockMvc.perform(get("/guardians").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/guardians")
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(jsonreponse));
 

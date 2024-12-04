@@ -48,6 +48,6 @@ public class Pet {
         this.specie = specie;
         this.age = age;
         this.breed = breed;
-        this.guardian = guardian;
+        this.guardian=guardian;
     }
 }
