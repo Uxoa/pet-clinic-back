@@ -28,11 +28,10 @@ public class Appointment {
     @JsonIgnoreProperties(value = "appointment")
     private Pet pet;
 
-    public Appointment() {
-    }
 
-    public Appointment(Long id, String date, String time, String reason, Pet pet) {
-        this.id = id;
+
+    public Appointment(String date, String time, String reason, Pet pet) {
+
         this.date = date;
         this.time = time;
         this.reason = reason;

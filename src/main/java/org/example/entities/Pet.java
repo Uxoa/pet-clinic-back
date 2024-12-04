@@ -43,11 +43,12 @@ public class Pet {
     @JsonIgnoreProperties(value = "pets")
     private Guardian guardian;
 
-    public Pet(String name, String specie,String breed, int age, Guardian guardian) {
+    public Pet(String name, String specie,String breed, int age, Guardian guardian ) {
         this.name = name;
         this.specie = specie;
         this.age = age;
         this.breed = breed;
         this.guardian=guardian;
+
     }
 }

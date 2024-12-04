@@ -8,6 +8,7 @@ public class PetMapper {
     public static Pet fromRequest(PetRequest petRequest, Guardian guardian) {
         return new Pet( petRequest.name(), petRequest.specie(),
                 petRequest.breed(), petRequest.age(), guardian
+
         );
     }
 }

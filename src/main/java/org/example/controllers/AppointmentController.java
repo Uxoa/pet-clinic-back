@@ -1,7 +1,11 @@
 package org.example.controllers;
 
+import org.example.dtos.AppointmentRequest;
 import org.example.entities.Appointment;
+import org.example.entities.Pet;
 import org.example.repositories.AppointmentRepository;
+import org.example.repositories.PetRepository;
+import org.example.services.AppointmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,16 +18,19 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/appointments")
 public class AppointmentController {
-    private final AppointmentRepository appointmentRepository;
+   private AppointmentService appointmentService;
 
-    public AppointmentController(AppointmentRepository appointmentRepository) {
-        this.appointmentRepository = appointmentRepository;
+    public AppointmentController(AppointmentService appointmentService) {
+        this.appointmentService = appointmentService;
     }
 
     @PostMapping
-    public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment){
+    public ResponseEntity<Appointment> createAppointment(@RequestBody AppointmentRequest appointmentRequest){
 
-        Appointment savedAppointment = appointmentRepository.save(appointment);
+
+
+
+        Appointment savedAppointment = appointmentService.createAppointment(appointmentRequest);
         return new ResponseEntity<>(savedAppointment, HttpStatus.CREATED);
 
     }
