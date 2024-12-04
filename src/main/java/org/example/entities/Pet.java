@@ -2,6 +2,7 @@ package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,14 +18,19 @@ import java.util.List;
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id_pet", nullable = false)
     private int id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "specie")
     private String specie;
-    @Column(name = "race")
-    private String race = "unknown";
+
+    @Column(name = "breed")
+    private String breed = "unknown";
+
     @Column(name = "age")
     private int age;
 
@@ -35,12 +41,13 @@ public class Pet {
     @ManyToOne
     @JoinColumn(name = "guardian_id")
     @JsonIgnoreProperties(value = "pets")
-    private Guardian guardianId;
+    private Guardian guardian;
 
-    public Pet(String name, String specie, String race, int age) {
+    public Pet(String name, String specie,String breed, int age, Guardian guardian) {
         this.name = name;
         this.specie = specie;
-        this.race = race;
         this.age = age;
+        this.breed = breed;
+        this.guardian=guardian;
     }
 }
