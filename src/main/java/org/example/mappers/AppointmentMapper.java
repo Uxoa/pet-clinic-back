@@ -7,7 +7,7 @@ import org.example.entities.Pet;
 public class AppointmentMapper {
 
     public static Appointment fromRequest(AppointmentRequest appointmentRequest, Pet pet){
-        return new Appointment(appointmentRequest.date(), appointmentRequest.reason(), appointmentRequest.time(), pet);
+        return new Appointment(appointmentRequest.date(), appointmentRequest.time(), appointmentRequest.reason(), pet);
     }
 
 }
