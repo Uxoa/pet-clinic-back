@@ -25,7 +25,7 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(name = "pet_id")
-    @JsonIgnoreProperties(value = "appointment")
+    @JsonIgnoreProperties(value = "appointments")
     private Pet pet;
 
 

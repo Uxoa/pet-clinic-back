@@ -35,7 +35,7 @@ public class AppointmentController {
 
     }
 
-    @GetMapping
+    /*@GetMapping
     public List<Appointment> showAllAppointments() {
         return this.appointmentRepository.findAll();
     }
@@ -68,6 +68,6 @@ public class AppointmentController {
         appointmentRepository.save(appointmentToUpdate);
 
         return new ResponseEntity<>(appointmentToUpdate, HttpStatus.OK);
-    }
+    }*/
 
 }
