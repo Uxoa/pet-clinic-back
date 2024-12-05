@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "36c6e566-6063-42c3-bcbf-0c023cef7e5f",
+		"name": "Clinica Vet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39117935"
+	},
+	"item": [
+		{
+			"name": "Mentors",
+			"item": [
+				{
+					"name": "create guardian",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Alice Johnson\",\r\n  \"email\": \"alice.johnson@email.com\",\r\n  \"phone\": \"987654321\",\r\n  \"address\": \"123 Meadow Lane\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/guardians",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guardians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all guardians",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/guardians",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"guardians"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show guardian by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show guardian by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update guardian by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete guardian by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pets",
+			"item": [
+				{
+					"name": "create pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"name\": \"Buddy\",\r\n  \"species\": \"dog\",\r\n  \"breed\": \"Labrador Retriever\",\r\n  \"age\": 4,\r\n  \"guardianId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pets",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show pet by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update pet by yd",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/patients/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete pet by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/patients/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"patients",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "create appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2024-04-15\",\r\n  \"time\": \"15:30\",\r\n  \"reason\": \"Vaccination\",\r\n  \"petId\": 1\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/appointments",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all appointments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/appointments",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show appointment by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/appointments/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update appointment by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date\": \"2024-04-16\",\r\n  \"time\": \"14:00\",\r\n  \"reason\": \"Follow-up\",\r\n  \"petId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/appointments/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete appointment by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/appointments/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"appointments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
