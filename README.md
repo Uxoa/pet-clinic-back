@@ -131,8 +131,9 @@ Este diseño organiza las relaciones entre pacientes y tutores, con funcionalida
 ---
 
 ## **Esquema E/R**
+![imagen](https://github.com/user-attachments/assets/11773bdf-d3fb-4464-add6-9f9e8b12b599)
 
-![Captura de pantalla 2024-11-28 103814](https://github.com/user-attachments/assets/5d6ec824-7f75-41a9-b88d-8679522478d2)
+
 
 https://lucid.app/lucidchart/97770422-856e-4966-8168-a1ec4f79b85a/edit?invitationId=inv_a5f72cf1-5754-46af-9f2c-11f46152ca78&page=0_0#
 
