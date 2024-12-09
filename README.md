@@ -16,15 +16,9 @@ El sistema ha sido desarrollado como una **API REST** utilizando **Java Spring B
 
 ## 👀 **Objetivo del Sprint**
 
-En este sprint, se desarrollaron los siguientes módulos:
+En este sprint, hemos desarrollado el módulo Appointments.
 
-1. **Gestor de Tutores (Guardians):**
-    - Registro, búsqueda, listado, actualización y eliminación de tutores.
-    - Relación entre tutores y pacientes.
-2. **Gestor de Pacientes (Pets):**
-    - Registro, búsqueda, listado, actualización y eliminación de pacientes.
-    - Asociación de pacientes con sus tutores.
-3. **Gestor de Citas (Appointments):**
+**Gestor de Citas (Appointments):**
     - Registro, búsqueda, listado, actualización y eliminación de citas.
     - Asociación de citas con pacientes registrados en el sistema.
 
