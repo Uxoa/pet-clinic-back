@@ -136,7 +136,7 @@ https://lucid.app/lucidchart/97770422-856e-4966-8168-a1ec4f79b85a/edit?invitatio
 
 ## **Planificación**
 
-- No hemos podido terminar las Estadísticas así como la actualización de nuestro Diagrama, pero estarán preparadas para el siguiente sprint
+- Actualmente estamos terminando de desarrollar las Estadísticas así como la actualización de nuestro Diagrama, no hemos podido presentarlas en este sprint pero estarán preparadas para el siguiente.
 
 - [Trello](https://trello.com/invite/b/673c9f6e1dbab5ef51910ebf/ATTI7adb4466e1d431c6b699b7cfcee1e142C3D560B0/clinicaveterinaria)
 
