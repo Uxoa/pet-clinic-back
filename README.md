@@ -1,27 +1,34 @@
+Aquí tienes la actualización para el archivo `README.md` que incluye el módulo de **Gestor de Citas** (`Appointments`):
+
+---
+
 # Sistema de Gestión para Clínica Veterinaria
 
 ### 🏁 **Contexto General**
 
-Margarita está a punto de abrir su clínica veterinaria y necesita un sistema para gestionar los datos de sus pacientes y sus tutores. Este sistema será esencial para mantener organizada toda la información de los animales atendidos y sus responsables.
+Margarita está a punto de abrir su clínica veterinaria y necesita un sistema para gestionar los datos de sus pacientes, tutores y citas. Este sistema será esencial para mantener organizada toda la información de los animales atendidos, sus responsables y el historial de citas.
 
-En este primer sprint, nos enfocaremos en las funcionalidades más importantes del sistema: el **gestor de pacientes** y el **gestor de tutores**. Margarita quiere empezar con un sistema sencillo pero funcional, que permita registrar, buscar, listar, actualizar y eliminar tanto pacientes como tutores.
+En este sprint, nos enfocamos en desarrollar tres módulos principales: el **gestor de pacientes**, el **gestor de tutores** y el **gestor de citas**, con funcionalidades clave para garantizar un sistema funcional y escalable.
 
-El sistema será implementado como una **API REST** desarrollada en **Java Spring Boot**, y los datos serán almacenados en una base de datos H2.
+El sistema ha sido desarrollado como una **API REST** utilizando **Java Spring Boot**, y los datos se almacenan en una base de datos H2.
 
 ---
 
-## 👀 **Objetivo del Primer Sprint**
+## 👀 **Objetivo del Sprint**
 
-En este primer sprint, se desarrollará lo siguiente:
+En este sprint, se desarrollaron los siguientes módulos:
 
-1. **Gestor de Tutores:**
+1. **Gestor de Tutores (Guardians):**
     - Registro, búsqueda, listado, actualización y eliminación de tutores.
-    - Relación entre tutores y pacientes, permitiendo reutilizar los datos de los tutores para varios pacientes.
-2. **Gestor de Pacientes:**
+    - Relación entre tutores y pacientes.
+2. **Gestor de Pacientes (Pets):**
     - Registro, búsqueda, listado, actualización y eliminación de pacientes.
-    - Asociación de pacientes con sus respectivos tutores.
+    - Asociación de pacientes con sus tutores.
+3. **Gestor de Citas (Appointments):**
+    - Registro, búsqueda, listado, actualización y eliminación de citas.
+    - Asociación de citas con pacientes registrados en el sistema.
 
-Con esto, Margarita podrá registrar y gestionar toda la información de sus pacientes y sus tutores de manera centralizada.
+Con esto, Margarita podrá gestionar toda la información de sus pacientes, tutores y el historial de citas en su clínica.
 
 ---
 
@@ -40,11 +47,7 @@ El sistema ha sido desarrollado utilizando las siguientes tecnologías:
 
 ## 🧑🏽‍🦰 **Gestor de Tutores**
 
-**Contexto:**
-
-Además de los pacientes, Margarita necesita poder registrar a los tutores, quienes son responsables de traer a los animales a la clínica. Este módulo permitirá gestionar la información de los tutores de manera centralizada, asegurando que varios pacientes puedan asociarse al mismo tutor.
-
-**Requisitos Funcionales:**
+### **Requisitos Funcionales:**
 
 1. **Registro de Tutores:**
     - Permitir registrar tutores con la siguiente información:
@@ -58,7 +61,7 @@ Además de los pacientes, Margarita necesita poder registrar a los tutores, quie
     - Listar todos los tutores registrados en el sistema.
     - Mostrar información básica como nombre y teléfono.
 4. **Actualización de Tutores:**
-    - Permitir modificar los datos de un tutor registrado, como su nombre o teléfono.
+    - Permitir modificar los datos de un tutor registrado.
 5. **Eliminación de Tutores:**
     - Permitir eliminar un tutor del sistema si ya no tiene pacientes asociados.
 
@@ -66,17 +69,13 @@ Además de los pacientes, Margarita necesita poder registrar a los tutores, quie
 
 ## 😿 **Gestor de Pacientes**
 
-**Contexto:**
-
-Margarita necesita poder registrar y gestionar a los pacientes de su clínica. Cada paciente debe tener información básica como su nombre, edad, especie, además de estar asociado a un tutor que sea responsable de él. Este módulo permitirá mantener un registro organizado de todos los pacientes y sus datos.
-
-**Requisitos Funcionales:**
+### **Requisitos Funcionales:**
 
 1. **Registro de Pacientes:**
     - Permitir registrar pacientes con la siguiente información:
         - Nombre del paciente.
         - Especie (**perro** o **gato**).
-        - Raza (opcional y por defecto: “unknown”).
+        - Raza (opcional, con valor predeterminado: “unknown”).
         - Edad.
         - Número de identificación único (autogenerado).
         - Tutor asociado (por ID).
@@ -85,67 +84,56 @@ Margarita necesita poder registrar y gestionar a los pacientes de su clínica. C
     - Ver todos los detalles del paciente, incluyendo el tutor asociado.
 3. **Listado de Pacientes:**
     - Listar todos los pacientes registrados en el sistema.
-    - Mostrar información básica como nombre, especie, y tutor asociado.
+    - Mostrar información básica como nombre, especie y tutor asociado.
 4. **Actualización de Pacientes:**
-    - Permitir modificar los datos de un paciente registrado, como su nombre, especie, edad, tutor, etc.
+    - Permitir modificar los datos de un paciente registrado.
 5. **Eliminación de Pacientes:**
     - Permitir eliminar un paciente del sistema, asegurando que ya no esté disponible en los listados o búsquedas.
 
 ---
 
-## **Resumen del Alcance del Primer Sprint**
+## 📅 **Gestor de Citas**
+
+### **Requisitos Funcionales:**
+
+1. **Registro de Citas:**
+    - Permitir registrar citas con la siguiente información:
+        - Fecha.
+        - Hora.
+        - Motivo de la consulta.
+        - Paciente asociado (por ID).
+2. **Búsqueda de Citas:**
+    - Buscar citas por su ID único.
+    - Ver todos los detalles de la cita, incluyendo el paciente asociado.
+3. **Listado de Citas:**
+    - Listar todas las citas registradas en el sistema.
+    - Mostrar información básica como fecha, hora, motivo y paciente asociado.
+4. **Actualización de Citas:**
+    - Permitir modificar los datos de una cita registrada.
+5. **Eliminación de Citas:**
+    - Permitir eliminar una cita del sistema.
+
+---
+
+## **Resumen del Alcance del Sprint**
 
 | **Módulo**           | **Funcionalidades**                                                                                                                                 |
 |-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Gestor de Pacientes** | Registrar pacientes, buscar por identificación, listar todos los pacientes, actualizar y eliminar.                                                |
 | **Gestor de Tutores**   | Registrar tutores, buscar por nombre o identificación, listar todos los tutores, actualizar y eliminar.                                           |
+| **Gestor de Citas**     | Registrar citas, buscar por identificación, listar todas las citas, actualizar y eliminar.                                                        |
 
 ---
 
 ## **Diagrama UML**
 
-![Captura de pantalla 2024-11-28 102249](https://github.com/user-attachments/assets/1185712d-4051-47c3-92e0-2bdc9be526e0)
-
-https://lucid.app/lucidchart/9609464a-7333-4dbf-a6cb-40a017e96fa2/edit?invitationId=inv_9be1c35e-06d5-42d8-bb90-6c8deadbb393&page=0_0#
-
-
-Este esquema representa el diseño del sistema de gestión para una clínica veterinaria, mostrando los controladores, repositorios y entidades principales:
-
-Controladores:
-
-- PatientController: Gestiona las operaciones CRUD (crear, leer, actualizar, eliminar) para pacientes.
-- MentorController: Maneja las operaciones CRUD para tutores (mentores).
-  
-Repositorios:
-
-- PatientRepository: Interface para acceder a la base de datos de pacientes.
-- MentorRepository: Interface que extiende JpaRepository, con métodos adicionales como findByName.
-
-Entidades:
-
-- Patient: Representa a los pacientes con atributos como ID, nombre, especie, raza, edad y un vínculo con su tutor.
-- Mentor: Representa a los tutores, con atributos como ID, nombre, apellido, teléfono y una lista de pacientes asociados.
-
-Este diseño organiza las relaciones entre pacientes y tutores, con funcionalidades clave para mantener el sistema.
-
----
-
-## **Esquema E/R**
-![imagen](https://github.com/user-attachments/assets/11773bdf-d3fb-4464-add6-9f9e8b12b599)
-
-
-
-https://lucid.app/lucidchart/97770422-856e-4966-8168-a1ec4f79b85a/edit?invitationId=inv_a5f72cf1-5754-46af-9f2c-11f46152ca78&page=0_0#
-
-Uno a Muchos (1:N):
-
-- Cada tutor (Menthor) puede estar asociado con múltiples pacientes (Patients), pero cada paciente tiene un único tutor. Esto se implementa mediante la llave foránea fk_id_Menthor en la tabla Patients, que referencia el Id en la tabla Menthor.
+> **Actualización pendiente para incluir la entidad y relación de `Appointments`.**
 
 ---
 
 ## **Planificación**
 
-- Trello https://trello.com/invite/b/673c9f6e1dbab5ef51910ebf/ATTI7adb4466e1d431c6b699b7cfcee1e142C3D560B0/clinicaveterinaria
+- [Trello](https://trello.com/invite/b/673c9f6e1dbab5ef51910ebf/ATTI7adb4466e1d431c6b699b7cfcee1e142C3D560B0/clinicaveterinaria)
 
 ---
 
@@ -158,16 +146,4 @@ Uno a Muchos (1:N):
 
 ---
 
-## **Resultados Esperados**
-
-1. Margarita podrá gestionar la información de los tutores y pacientes desde un sistema centralizado.
-2. Cada paciente estará asociado a un tutor existente, garantizando la consistencia de los datos.
-3. El sistema estará preparado para ser extendido en el siguiente sprint, donde se incluirá la gestión de citas.
-
----
-
-
-
-
-
-
+¿Te gustaría que añada algo más o profundice en alguna sección? 😊
