@@ -14,8 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -94,9 +94,9 @@ class AppointmentControllerTest {
         petRepository.save(pet1);
         petRepository.save(pet2);
 
-        Appointment appointment1 = new Appointment("2024-04-15", "15:30",  "Vaccination", pet1);
+        Appointment appointment1 = new Appointment("2024-04-15", "15:30", "Vaccination", pet1);
         appointmentRepository.save(appointment1);
-        Appointment appointment2 = new Appointment("2024-04-16", "10:00",  "Annual Checkup", pet2);
+        Appointment appointment2 = new Appointment("2024-04-16", "10:00", "Annual Checkup", pet2);
         appointmentRepository.save(appointment2);
 
 
@@ -152,5 +152,120 @@ class AppointmentControllerTest {
 
     }
 
+    @Test
+    void givenValidIdAppointment_whenGetRequestIsMade_thenReturnSuccess() throws Exception {
+        Guardian guardian1 = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
+        guardianRepository.save(guardian1);
 
+        Pet pet1 = new Pet("Buddy", "dog", "Labrador Retriever", 4, guardian1);
+        petRepository.save(pet1);
+
+        Appointment appointment1 = new Appointment("2024-04-15", "15:30", "Vaccination", pet1);
+        appointmentRepository.save(appointment1);
+
+
+        String jsonreponse =
+                """
+                        {
+                          "id": 1,
+                          "date": "2024-04-15",
+                          "time": "15:30",
+                          "reason": "Vaccination",
+                          "pet": {
+                            "id": 1,
+                            "name": "Buddy",
+                            "specie": "dog",
+                            "breed": "Labrador Retriever",
+                            "age": 4,
+                            "guardian": {
+                              "id": 1,
+                              "name": "Alice Johnson",
+                              "email": "alice.johnson@email.com",
+                              "phone": "987654321",
+                              "address": "123 Meadow Lane"
+                            }
+                          }
+                        }
+                        """;
+
+        mockMvc.perform(get("/appointments/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonreponse));
+
+    }
+
+    @Test
+    void givenAppointmentById_whenDelete_theReturnSuccess() throws Exception {
+        Guardian guardian1 = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
+        guardianRepository.save(guardian1);
+        Pet pet1 = new Pet("Buddy", "dog", "Labrador Retriever", 4, guardian1);
+        petRepository.save(pet1);
+        Appointment appointment1 = new Appointment("2024-04-15", "15:30", "Vaccination", pet1);
+        appointmentRepository.save(appointment1);
+
+        assertEquals(1, appointmentRepository.count());
+
+
+        mockMvc.perform(delete("/appointments/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        assertEquals(0, appointmentRepository.count());
+    }
+
+    @Test
+    void givenPatientById_whenUpdate_thenReturnSuccess() throws Exception {
+        Guardian guardian1 = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
+        guardianRepository.save(guardian1);
+
+        Pet pet1 = new Pet("Buddy", "dog", "Labrador Retriever", 4, guardian1);
+        petRepository.save(pet1);
+
+        Appointment appointment1 = new Appointment("2024-04-15", "15:30", "Vaccination", pet1);
+        appointmentRepository.save(appointment1);
+
+        String jsonrequest =
+                """
+                                {
+                                  "date": "2024-04-16",
+                                  "time": "14:00",
+                                  "reason": "Follow-up",
+                                  "petId": 1
+                                }
+                        
+                        """;
+
+        String jsonresponse =
+                """
+                        
+                          {
+                            "id": 1,
+                            "date": "2024-04-16",
+                            "time": "14:00",
+                            "reason": "Follow-up",
+                            "pet": {
+                              "id": 1,
+                              "name": "Buddy",
+                              "specie": "dog",
+                              "breed": "Labrador Retriever",
+                              "age": 4,
+                              "guardian": {
+                                "id": 1,
+                                "name": "Alice Johnson",
+                                "email": "alice.johnson@email.com",
+                                "phone": "987654321",
+                                "address": "123 Meadow Lane"
+                              }
+                            }
+                          }
+                        
+                        """;
+
+        mockMvc.perform(put("/appointments/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonrequest))
+                .andExpect(status().isOk())
+                .andExpect(content().json(jsonresponse));
+
+    }
 }
