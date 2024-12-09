@@ -117,11 +117,26 @@ El sistema ha sido desarrollado utilizando las siguientes tecnologías:
 
 ## **Diagrama UML**
 
-> **Actualización pendiente para incluir la entidad y relación de `Appointments`.**
+![Captura de pantalla 2024-12-09 103916](https://github.com/user-attachments/assets/6bab81d2-f1ce-453c-909d-39f9e9816fea)
+
+
+https://lucid.app/lucidchart/9609464a-7333-4dbf-a6cb-40a017e96fa2/edit?beaconFlowId=20A98EA1F60C2904&invitationId=inv_9be1c35e-06d5-42d8-bb90-6c8deadbb393&page=0_0#
+
+
+---
+## **Diagrama E/R**
+
+![imagen](https://github.com/user-attachments/assets/9f3b80a2-e424-43ff-b517-a4ef5dfac75a)
+
+https://lucid.app/lucidchart/97770422-856e-4966-8168-a1ec4f79b85a/edit?invitationId=inv_a5f72cf1-5754-46af-9f2c-11f46152ca78&page=0_0#
+
 
 ---
 
+
 ## **Planificación**
+
+- Actualmente estamos terminando de desarrollar las Estadísticas así como la actualización de nuestro Diagrama, no hemos podido presentarlas en este sprint pero estarán preparadas para el siguiente.
 
 - [Trello](https://trello.com/invite/b/673c9f6e1dbab5ef51910ebf/ATTI7adb4466e1d431c6b699b7cfcee1e142C3D560B0/clinicaveterinaria)
 
