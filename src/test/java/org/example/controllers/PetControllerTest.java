@@ -72,7 +72,7 @@ public class PetControllerTest {
     }
 
     @Test
-    void givenValidGuardian_whenGetRequestIsMade_thenReturnSuccess() throws Exception {
+    void givenValidPet_whenGetRequestIsMade_thenReturnSuccess() throws Exception {
         Guardian guardian1 = new Guardian("Alice Johnson", "alice.johnson@email.com", "987654321", "123 Meadow Lane");
         Guardian guardian2 = new Guardian("Emma Brown", "emma.brown@email.com", "987654322", "456 Oak Street");
         guardianRepository.save(guardian1);

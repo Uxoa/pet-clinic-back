@@ -30,7 +30,6 @@ class GuardianControllerTest {
 
     @Test
     void givenValidGuardian_whenPostRequestIsMade_thenReturnSuccess() throws Exception {
-        //String a =  new ObjectMapper().writeValueAsString(new GuardianRequest());
         String guardianRequest = """
                 {
                   "name": "Alice Johnson",
