@@ -117,7 +117,10 @@ El sistema ha sido desarrollado utilizando las siguientes tecnologías:
 
 ## **Diagrama UML**
 
-> **Actualización pendiente para incluir la entidad y relación de `Appointments`.**
+![Captura de pantalla 2024-12-09 103717](https://github.com/user-attachments/assets/75e249e6-6c50-4724-a235-200661c7e8d6)
+
+https://lucid.app/lucidchart/9609464a-7333-4dbf-a6cb-40a017e96fa2/edit?beaconFlowId=20A98EA1F60C2904&invitationId=inv_9be1c35e-06d5-42d8-bb90-6c8deadbb393&page=0_0#
+
 
 ---
 
