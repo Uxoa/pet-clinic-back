@@ -1,7 +1,3 @@
-Aquí tienes la actualización para el archivo `README.md` que incluye el módulo de **Gestor de Citas** (`Appointments`):
-
----
-
 # Sistema de Gestión para Clínica Veterinaria
 
 ### 🏁 **Contexto General**
@@ -137,7 +133,3 @@ El sistema ha sido desarrollado utilizando las siguientes tecnologías:
 - Fran García
 - Layla Gómez
 - Iván López
-
----
-
-¿Te gustaría que añada algo más o profundice en alguna sección? 😊
