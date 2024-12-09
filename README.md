@@ -124,6 +124,15 @@ https://lucid.app/lucidchart/9609464a-7333-4dbf-a6cb-40a017e96fa2/edit?beaconFlo
 
 
 ---
+## **Diagrama E/R**
+
+![imagen](https://github.com/user-attachments/assets/9f3b80a2-e424-43ff-b517-a4ef5dfac75a)
+
+https://lucid.app/lucidchart/97770422-856e-4966-8168-a1ec4f79b85a/edit?invitationId=inv_a5f72cf1-5754-46af-9f2c-11f46152ca78&page=0_0#
+
+
+---
+
 
 ## **Planificación**
 
