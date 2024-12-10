@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/guardians")
+@RequestMapping("/api/guardians")
 public class GuardianController {
     private final GuardianService guardianService;
 
