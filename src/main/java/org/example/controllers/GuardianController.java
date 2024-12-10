@@ -22,7 +22,7 @@ public class GuardianController {
     @GetMapping
     public List<Guardian> getGuardians(@RequestParam(name = "name", required = false) String name) {
         if (name != null && !name.isEmpty()) {
-            return guardianService.findByName(name);
+            return guardianService.searchByName(name);
         }
         return guardianService.findAll();
     }

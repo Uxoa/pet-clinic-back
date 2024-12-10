@@ -37,13 +37,13 @@ public class GuardianService {
         return  guardianRepository.findAll();
     }
 
-    public List<Guardian> findByName(String name) {
-        List<Guardian> guardians = guardianRepository.findByName(name);
+    public List<Guardian> searchByName(String name) {
+        List<Guardian> guardianList = guardianRepository.findLikeName(name);
 
-        if (guardians.isEmpty()) {
+        if (guardianList.isEmpty()) {
             throw new GuardianNotFoundException("Guardian Not Found");
         }
-        return guardians;
+        return guardianList;
     }
 
     public Guardian deleteById(int id) {
