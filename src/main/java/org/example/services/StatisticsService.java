@@ -1,35 +1,32 @@
 package org.example.services;
 
-import org.example.dtos.StatisticsResponse;
 import org.example.repositories.AppointmentRepository;
 import org.example.repositories.GuardianRepository;
 import org.example.repositories.PetRepository;
-import org.example.repositories.StatisticsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class StatisticsService {
-    private StatisticsRepository statisticsRepository;
+    
     private AppointmentRepository appointmentRepository;
-    private GuardianRepository guardianRepository;
     private PetRepository petRepository;
+    private GuardianRepository guardianRepository;
     
-    
-    public StatisticsService(StatisticsRepository statisticsRepository, AppointmentRepository appointmentRepository, GuardianRepository guardianRepository, PetRepository petRepository) {
-        this.statisticsRepository = statisticsRepository;
+    public StatisticsService(AppointmentRepository appointmentRepository, PetRepository petRepository, GuardianRepository guardianRepository) {
         this.appointmentRepository = appointmentRepository;
-        this.guardianRepository = guardianRepository;
         this.petRepository = petRepository;
+        this.guardianRepository = guardianRepository;
     }
     
-    public StatisticsService() {
-    }
-    
-    public StatisticsResponse getAllStatistics(){
-        Long totalAppointments = appointmentRepository.count();
-        Long totalGuardians = guardianRepository.count();
-        Long totalPets = petRepository.count();
-        
-        return new StatisticsResponse(totalAppointments, totalGuardians,totalPets);
+    public Map<String, Integer> getGlobalStatistics() {
+        Map<String, Integer> statistics = new HashMap<>();
+        statistics.put("appointments", (int) appointmentRepository.count());
+        statistics.put("pets", (int) petRepository.count());
+        statistics.put("guardians", (int) guardianRepository.count());
+        return statistics;
     }
 }
