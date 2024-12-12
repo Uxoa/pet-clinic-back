@@ -23,32 +23,32 @@ public class Guardian {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_guardian", nullable = false)
     private int id;
-
+    
     @Column(name = "name")
     private String name;
-
-
+    
+    
     @Column(name = "email")
     private String email;
-
+    
     @Column(name="phone")
     private String phone;
-
+    
     @Column(name = "address")
     private String address;
-
-
+    
+    
     @OneToMany(mappedBy = "guardian", cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = "guardian")
     private List<Pet> pets;
-
-
+    
+    
     public Guardian(String name, String email, String phone, String address) {
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
     }
-
-
+    
+    
 }
